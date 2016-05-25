@@ -12,6 +12,8 @@ def pag(current,count=10):
 
 def pag_button(current):
     sum = divmod(models.article.objects.count(),10)[0]
+    if divmod(models.article.objects.count(),10)[1] >0:
+        sum += 2
     start = current-5
     end = current+4
     if start < 1:
@@ -19,6 +21,7 @@ def pag_button(current):
     if end >sum:
         end = sum
     return range(start,end)
+
 def index(request):
     # for i in range(5,300):
     #     title = 'titile'+str(i)
