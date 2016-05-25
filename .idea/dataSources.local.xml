@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="pag" uuid="22a00a9b-28d4-41b7-aa79-20067fa24da0">
+      <secret-storage>master_key</secret-storage>
+      <user-name>admin</user-name>
+      <schema-pattern>pag.*</schema-pattern>
+      <default-schemas>pag.*</default-schemas>
+    </data-source>
+  </component>
+</project>
