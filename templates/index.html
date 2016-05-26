@@ -34,6 +34,7 @@
         }
     </style>
     <link rel="stylesheet" href="/static/plugins/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/js/pag.js">
 </head>
 <body>
     <div style="margin:auto 0;height:500px;width:600px;">
@@ -47,25 +48,32 @@
             </tr>
         {% endfor %}
         </table>
+
+        {#+++++++++++++++++++++++++分页开始++++++++++++++++++++++++++++++#}
         <nav>
             <ul class="pagination">
                 <li>
-                    <a href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
+                    <a onclick="action('Previous')" aria-label="Previous">
+                    <span  aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
                 {% for p in number_list %}
-                    <li><a href="?curpag={{ p }}">{{ p }}</a></li>
+                    <li tag="pag"><a href="?curpag={{ p }}">{{ p }}</a></li>
                 {% endfor %}
                 <li>
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
+                    <a onclick="action('Next')" aria-label="Next">
+                    <span  aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
             </ul>
         </nav>
+        {#++++++++++++++++++++++++分页结束+++++++++++++++++++++++++++++++#}
+
     </div>
 </body>
+<script type="text/javascript" src="/static/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+
 <script type="text/javascript">
     function altRows(id){
         if(document.getElementsByTagName){
@@ -87,5 +95,7 @@
         altRows('alternatecolor');
     }
 </script>
-<script type="text/javascript" src="/static/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="/static/js/pag.js"></script>
+
 </html>
