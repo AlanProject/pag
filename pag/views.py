@@ -3,52 +3,54 @@ from django.shortcuts import render,HttpResponseRedirect,HttpResponse
 import models
 # Create your views here.
 
+
+# 设置分页的阈值、比如每10条数据一页 这里设置10
+number = 10
+
+# 获取数据总条数
+sums = models.article.objects.count()
+
+# 获取所有数据
+obj = models.article.objects.all()
+
 # 获取当前页码的所有数据并返回
-def pag_current(current,count=10):
+
+
+def pag_current(current):
     current -= 1
-    start = current*count
-    end = count*current+count
-    # data = models.article.objects.filter(id__gte=start).filter(id__lte=end)
-    data = models.article.objects.all()[start:end]
+    start = current*number
+    end = number*current+number
+    data = obj[start:end]
     return data
 
 # 页码分篇
+
+
 def pag_change(current):
-    sum = divmod(models.article.objects.count(),10)[0]
-    if divmod(models.article.objects.count(),10)[1] >0:
-        sum += 1
+    total = divmod(sums, number)[0]
+    surplus = divmod(sums, number)[1]
+    if surplus > 0:
+        total += 1
     start = current-5
     end = current+4
     if start < 1:
         start = 1
-        end = 10
-    if end >sum:
-        end = sum
-        start = sum-9
-    return range(start,end+1)
+        end = number
+    if end > total:
+        end = total
+        start = total-9
+    return range(start, end+1)
 
 
 # 主调度程序
 def index(request):
     if request.method == 'GET':
         curpag = request.GET.get('curpag')
-        num = request.GET.get('num')
-        print num
-        if not num:
-            num = 0
-        action = request.GET.get('action')
         if curpag:
             curpag = int(curpag.strip('/'))
         else:
             curpag = 1
         data = pag_current(curpag).values()
         current_id = curpag
-        if action == 'Next':
-            curpag += 10*int(num)
-        elif action == 'Previous':
-            curpag -= 10*int(num)
-        else:
-            pass
-        num += int(num)+1
         number_list = pag_change(curpag)
-    return render(request,'index.html',{'data':data,'number_list':number_list,'current_id':current_id,'num':num})
+    return render(request, 'index.html', {'data': data, 'number_list': number_list,'current_id':current_id})

@@ -37,10 +37,7 @@ function update(data){
     var head = "<li><a onclick="+"action('Previous')" + "aria-label="+ "'Previous'" + "><span  aria-hidden=true>&laquo;</span></a></li>"
     var html = '';
     var end = "<li><a onclick="+"action('Next')" + "aria-label="+ "'Next'" + "><span  aria-hidden=true>&raquo;</span></a></li>"
-    for ( i in data){
-
-        console.log(data);
-        console.log(i);
+    for ( var i in data){
         html += "<li tag='pag'>"+"<a href='?curpag="+data[i]+"'>"+data[i]+"</a></li>"
     }
     html = head + html + end;
