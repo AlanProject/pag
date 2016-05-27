@@ -34,7 +34,6 @@
         }
     </style>
     <link rel="stylesheet" href="/static/plugins/bootstrap-3.3.5-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/js/pag.js">
 </head>
 <body>
     <div style="margin:auto 0;height:500px;width:600px;">
@@ -51,10 +50,11 @@
 
         {#+++++++++++++++++++++++++分页开始++++++++++++++++++++++++++++++#}
         <nav>
-            <ul class="pagination">
+
+            <ul class="pagination" total="{{ total }}" count="{{ count }}">
                 <li>
                     <a onclick="action('Previous')" aria-label="Previous">
-                    <span  aria-hidden="true">&laquo;</span>
+                    <span >&laquo;</span>
                     </a>
                 </li>
                 {% for p in number_list %}
@@ -62,17 +62,20 @@
                 {% endfor %}
                 <li>
                     <a onclick="action('Next')" aria-label="Next">
-                    <span  aria-hidden="true">&raquo;</span>
+                    <span >&raquo;</span>
                     </a>
                 </li>
             </ul>
+
         </nav>
         {#++++++++++++++++++++++++分页结束+++++++++++++++++++++++++++++++#}
 
     </div>
 </body>
-<script type="text/javascript" src="/static/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/plugins/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/js/pag.js"></script>
 
 <script type="text/javascript">
     function altRows(id){
@@ -95,7 +98,4 @@
         altRows('alternatecolor');
     }
 </script>
-
-<script type="text/javascript" src="/static/js/pag.js"></script>
-
 </html>
